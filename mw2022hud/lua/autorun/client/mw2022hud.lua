@@ -441,65 +441,66 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
     -- MWII does not support resolutions less wide than 16:10
 
     PKAD2_GetWeaponData()
-    if !IsValid(Weapon) then return end
+    if !LocalPlayer():Alive() then return end
+    if IsValid(Weapon) then
+        local clipcolor = nil
+        local reservecolor = nil
 
-    local clipcolor = nil
-    local reservecolor = nil
-
-    if Weapon:GetPrimaryAmmoType() != -1 then
-        if BottomlessMag then
-            draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-            draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, whitecolor, TEXT_ALIGN_RIGHT)
-        else
-            if WepClip1 < (WepMag1 / 3) then
-                clipcolor = redcolor
+        if Weapon:GetPrimaryAmmoType() != -1 then
+            if BottomlessMag then
+                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, whitecolor, TEXT_ALIGN_RIGHT)
             else
-                clipcolor = whitecolor
-            end
-
-            if WepReserve1 == 0 then
-                reservecolor = redcolor
-            else
-                reservecolor = graycolor
-            end
-
-            draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-            draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-            draw.DrawText(WepClip1, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
-            draw.DrawText(WepReserve1, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
-
-            local reloadw, reloadh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "   RELOAD"))
-            local reloadbutw, reloadbuth = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload")))
-
-            if WepClip1 < (WepMag1 / 3) and WepClip1 != 0 and !WeaponJammed then
-                if WepReserve1 > 0 then
-                    draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
-                    draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                    draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
+                if WepClip1 < (WepMag1 / 3) then
+                    clipcolor = redcolor
                 else
-                    draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
-                    draw.DrawText("LOW AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, yellowcolor, TEXT_ALIGN_CENTER)
+                    clipcolor = whitecolor
                 end
-            elseif WepClip1 == 0 and !WeaponJammed then
-                if WepReserve1 > 0 then
-                    draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
-                    draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                    draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
-                else
-                    draw.DrawText("NO AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
-                    draw.DrawText("NO AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, redcolor, TEXT_ALIGN_CENTER)
-                end
-            end
 
-            if WeaponJammed then
-                local jamw, jamh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "    UNJAM WEAPON"))
-                draw.WordBox(2 * scale, dispw * 0.5 - (jamw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", redcolor, Color(0,0,0), TEXT_ALIGN_LEFT)
-                draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                draw.DrawText("    UNJAM WEAPON", "mwiithicksmalltext", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, redcolor, TEXT_ALIGN_LEFT)
+                if WepReserve1 == 0 then
+                    reservecolor = redcolor
+                else
+                    reservecolor = graycolor
+                end
+
+                draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepClip1, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve1, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
+
+                local reloadw, reloadh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "   RELOAD"))
+                local reloadbutw, reloadbuth = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload")))
+
+                if WepClip1 < (WepMag1 / 3) and WepClip1 != 0 and !WeaponJammed then
+                    if WepReserve1 > 0 then
+                        draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
+                    else
+                        draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                        draw.DrawText("LOW AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, yellowcolor, TEXT_ALIGN_CENTER)
+                    end
+                elseif WepClip1 == 0 and !WeaponJammed then
+                    if WepReserve1 > 0 then
+                        draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
+                    else
+                        draw.DrawText("NO AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                        draw.DrawText("NO AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, redcolor, TEXT_ALIGN_CENTER)
+                    end
+                end
+
+                if WeaponJammed then
+                    local jamw, jamh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "    UNJAM WEAPON"))
+                    draw.WordBox(2 * scale, dispw * 0.5 - (jamw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", redcolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                    draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                    draw.DrawText("    UNJAM WEAPON", "mwiithicksmalltext", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, redcolor, TEXT_ALIGN_LEFT)
+                end
             end
         end
+        mwhuddrawgunicon(Weapon, dispw - 590 * scale, disph - 190 * scale, 280 * scale, 140 * scale)
     end
-    mwhuddrawgunicon(Weapon, dispw - 590 * scale, disph - 190 * scale, 280 * scale, 140 * scale)
 
     draw.DrawText(ply:GetAmmoCount(10), "mwiinadetext", dispw - 70 * scale, disph - 90 * scale, whitecolor, TEXT_ALIGN_CENTER)
     draw.SimpleText("k","hl2nadeicon",dispw - 70 * scale,disph - 125 * scale,headerTextColor,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
