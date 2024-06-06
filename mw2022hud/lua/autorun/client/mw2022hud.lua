@@ -67,7 +67,8 @@ local yellowcolor = Color(255,255,0)
 
 local whitecolor = Color(255,255,255)
 
-local graycolor = Color(165,165,165)
+local graycolor = Color(178,178,178)
+local bggraycolor = Color(106,106,106)
 
 local blackcolor = Color(0,0,0)
 
@@ -124,9 +125,9 @@ surface.CreateFont("mwiitextsmoler", {
     size = 30 * scale
 })
 
-surface.CreateFont("mw2iitextnormal", {
+surface.CreateFont("mwiinicktext", {
     shadow = false,
-    blursize = 1 * scale,
+    blursize = 0,
     underline = false,
     rotary = false,
     strikeout = false,
@@ -136,7 +137,43 @@ surface.CreateFont("mw2iitextnormal", {
     scanlines = 0,
     font = "Stratum2 BETA Medium",
     italic = false,
-    outline = true,
+    outline = false,
+    symbol = false,
+    weight = 2,
+    size = 24 * scale
+})
+
+surface.CreateFont("mwiinickblur", {
+    shadow = false,
+    blursize = 5 * scale,
+    underline = false,
+    rotary = false,
+    strikeout = false,
+    additive = false,
+    antialias = true,
+    extended = false,
+    scanlines = 0,
+    font = "Stratum2 BETA Medium",
+    italic = false,
+    outline = false,
+    symbol = false,
+    weight = 2,
+    size = 24 * scale
+})
+
+surface.CreateFont("mw2iitextnormal", {
+    shadow = false,
+    blursize = 5 * scale,
+    underline = false,
+    rotary = false,
+    strikeout = false,
+    additive = false,
+    antialias = true,
+    extended = false,
+    scanlines = 0,
+    font = "Stratum2 BETA Medium",
+    italic = false,
+    outline = false,
     symbol = false,
     weight = 2,
     size = 50 * scale
@@ -144,7 +181,7 @@ surface.CreateFont("mw2iitextnormal", {
 
 surface.CreateFont("mw2iitextsmoler", {
     shadow = false,
-    blursize = 1 * scale,
+    blursize = 5 * scale,
     underline = false,
     rotary = false,
     strikeout = false,
@@ -154,7 +191,7 @@ surface.CreateFont("mw2iitextsmoler", {
     scanlines = 0,
     font = "Stratum2 BETA Medium",
     italic = false,
-    outline = true,
+    outline = false,
     symbol = false,
     weight = 2,
     size = 30 * scale
@@ -208,7 +245,7 @@ surface.CreateFont("mwiinadetext", {
     scanlines = 0,
     font = "Stratum2 BETA Medium",
     italic = false,
-    outline = true,
+    outline = false,
     symbol = false,
     weight = 2,
     size = 30 * scale
@@ -331,9 +368,9 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         scanlines = 0,
         font = "Stratum2 BETA Medium",
         italic = false,
-        outline = true,
+        outline = false,
         symbol = false,
-        weight = 5000,
+        weight = 2,
         size = 50 * scale
     })
 
@@ -349,10 +386,46 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         scanlines = 0,
         font = "Stratum2 BETA Medium",
         italic = false,
-        outline = true,
+        outline = false,
         symbol = false,
         weight = 2,
         size = 30 * scale
+    })
+
+    surface.CreateFont("mwiinicktext", {
+        shadow = false,
+        blursize = 0,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 2,
+        size = 24 * scale
+    })
+
+    surface.CreateFont("mwiinickblur", {
+        shadow = false,
+        blursize = 5 * blur,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 2,
+        size = 24 * scale
     })
 
     surface.CreateFont("hl2wepicon", {
@@ -436,7 +509,9 @@ function PKAD2_GetWeaponData()
     end
 end
 
-hook.Add("HUDPaint", "mwiihuddraw", function()
+hook.Add("PostDrawHUD", "mwiihuddraw", function()
+    if gui.IsGameUIVisible() then return end
+
     if (dispw / disph) < (16 / 10) then return end
     -- MWII does not support resolutions less wide than 16:10
 
@@ -448,6 +523,7 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
 
         if Weapon:GetPrimaryAmmoType() != -1 then
             if BottomlessMag then
+                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
                 draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
                 draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, whitecolor, TEXT_ALIGN_RIGHT)
             else
@@ -464,6 +540,8 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
                 end
 
                 draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
                 draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
                 draw.DrawText(WepClip1, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
                 draw.DrawText(WepReserve1, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
@@ -475,14 +553,17 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
                     if WepReserve1 > 0 then
                         draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
                     else
+                        draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
                         draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
                         draw.DrawText("LOW AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, yellowcolor, TEXT_ALIGN_CENTER)
                     end
                 elseif WepClip1 == 0 and !WeaponJammed then
                     if WepReserve1 > 0 then
                         draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
                     else
@@ -495,6 +576,7 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
                     local jamw, jamh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "    UNJAM WEAPON"))
                     draw.WordBox(2 * scale, dispw * 0.5 - (jamw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", redcolor, Color(0,0,0), TEXT_ALIGN_LEFT)
                     draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                    draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                     draw.DrawText("    UNJAM WEAPON", "mwiithicksmalltext", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, redcolor, TEXT_ALIGN_LEFT)
                 end
             end
@@ -502,6 +584,24 @@ hook.Add("HUDPaint", "mwiihuddraw", function()
         mwhuddrawgunicon(Weapon, dispw - 590 * scale, disph - 190 * scale, 280 * scale, 140 * scale)
     end
 
+    draw.DrawText(ply:GetAmmoCount(10), "mw2iitextsmoler", dispw - 70 * scale, disph - 90 * scale, blackcolor, TEXT_ALIGN_CENTER)
+    draw.DrawText(ply:GetAmmoCount(10), "mw2iitextsmoler", dispw - 70 * scale, disph - 90 * scale, blackcolor, TEXT_ALIGN_CENTER)
     draw.DrawText(ply:GetAmmoCount(10), "mwiinadetext", dispw - 70 * scale, disph - 90 * scale, whitecolor, TEXT_ALIGN_CENTER)
     draw.SimpleText("k","hl2nadeicon",dispw - 70 * scale,disph - 125 * scale,headerTextColor,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+
+    surface.SetDrawColor(53,53,53,148)
+    surface.DrawRect(0 + 71 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.SetDrawColor(74,125,253)
+    surface.DrawRect(0 + 74 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), 0, LocalPlayer():GetMaxArmor() / 3, 0, 1), 0, 1), 10 * scale)
+    surface.SetDrawColor(53,53,53,148)
+    surface.DrawRect(0 + 71 * scale + 105 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.SetDrawColor(74,125,253)
+    surface.DrawRect(0 + 74 * scale + 105 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3, LocalPlayer():GetMaxArmor() / 3 * 2, 0, 1), 0, 1), 10 * scale)
+    surface.SetDrawColor(53,53,53,148)
+    surface.DrawRect(0 + 71 * scale + 210 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.SetDrawColor(74,125,253)
+    surface.DrawRect(0 + 74 * scale + 210 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3 * 2, LocalPlayer():GetMaxArmor(), 0, 1), 0, 1), 10 * scale)
+
+    draw.DrawText(LocalPlayer():Nick(), "mwiinickblur", 0 + 71 * scale, disph - 115 * scale, blackcolor, TEXT_ALIGN_LEFT)
+    draw.DrawText(LocalPlayer():Nick(), "mwiinicktext", 0 + 71 * scale, disph - 115 * scale, whitecolor, TEXT_ALIGN_LEFT)
 end)
