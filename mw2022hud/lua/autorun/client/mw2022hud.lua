@@ -601,6 +601,8 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
     surface.DrawRect(0 + 71 * scale + 210 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
     surface.SetDrawColor(74,125,253)
     surface.DrawRect(0 + 74 * scale + 210 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3 * 2, LocalPlayer():GetMaxArmor(), 0, 1), 0, 1), 10 * scale)
+    surface.SetDrawColor(whitecolor)
+    surface.DrawRect(0 + 74, disph - 65, 304 * scale * math.Remap(LocalPlayer():Health(), 0, 100, 0, 1), 10 * scale)
 
     draw.DrawText(LocalPlayer():Nick(), "mwiinickblur", 0 + 71 * scale, disph - 115 * scale, blackcolor, TEXT_ALIGN_LEFT)
     draw.DrawText(LocalPlayer():Nick(), "mwiinicktext", 0 + 71 * scale, disph - 115 * scale, whitecolor, TEXT_ALIGN_LEFT)
