@@ -1,0 +1,3 @@
+[submodule "mw2022hud/lua/firemodescript"]
+	path = mw2022hud/lua/firemodescript
+	url = https://github.com/LostTrackpad/swepfiremodes.git
