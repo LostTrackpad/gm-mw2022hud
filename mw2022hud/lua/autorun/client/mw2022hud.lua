@@ -1,4 +1,5 @@
 include("mwhud-tfabasekeys.lua")
+include("mwhud-firemodesystem.lua")
 
 local stockGunIcons = { -- Stock HL2 gun icons use a FONT.
     weapon_357 = 'e',
@@ -84,6 +85,8 @@ local hide = {
     CHudAmmo = true,
     CHudSecondaryAmmo = true
 }
+
+local platemat = Material("mw2022/armorplate.png")
 
 hook.Add("HUDShouldDraw", "hudhide", function(name)
 	if hide[name] then return false end
