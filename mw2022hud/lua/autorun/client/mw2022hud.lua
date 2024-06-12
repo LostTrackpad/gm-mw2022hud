@@ -1,5 +1,5 @@
 include("mwhud-tfabasekeys.lua")
-include("mwhud-firemodesystem.lua")
+include("firemodescript/firemodescript.lua")
 
 local stockGunIcons = { -- Stock HL2 gun icons use a FONT.
     weapon_357 = 'e',
