@@ -502,6 +502,8 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
         local clipcolor = nil
         local reservecolor = nil
 
+        GetCurrentWeaponFiremode()
+
         if Weapon:GetPrimaryAmmoType() != -1 then
             if BottomlessMag then
                 draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
@@ -563,6 +565,7 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
             end
         end
         mwhuddrawgunicon(Weapon, dispw - 590 * scale, disph - 190 * scale, 280 * scale, 140 * scale)
+        draw.DrawText(FiremodeString, "mwiitextsmoler", dispw - 500 * scale, disph - 60 * scale, whitecolor, TEXT_ALIGN_LEFT)
     end
 
     draw.DrawText(ply:GetAmmoCount(10), "mw2iitextsmoler", dispw - 70 * scale, disph - 90 * scale, blackcolor, TEXT_ALIGN_CENTER)
@@ -590,6 +593,4 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
 
     draw.DrawText(LocalPlayer():Nick(), "mwiinickblur", 0 + 71 * scale, disph - 115 * scale, blackcolor, TEXT_ALIGN_LEFT)
     draw.DrawText(LocalPlayer():Nick(), "mwiinicktext", 0 + 71 * scale, disph - 115 * scale, whitecolor, TEXT_ALIGN_LEFT)
-
-    GetCurrentWeaponFiremode()
 end)
