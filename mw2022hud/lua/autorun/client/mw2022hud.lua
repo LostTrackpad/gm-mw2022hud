@@ -24,28 +24,6 @@ local CPPAltfireWeps = {
 	["Weapon_mp5_hl1"] = true
 }
 
-local MWBaseFiremodes = {
-    ["AUTOMATIC"] = "Full-Auto",
-	["FULL AUTO"] = "Full-Auto",
-	["SEMI AUTO"] = "Semi-Auto",
-	["SEMI AUTOMATIC"] = "Semi-Auto",
-	["3RND BURST"] = "3-Burst"
-}
-
-local TFAFiremodes = {
-    ["Full-Auto"] = "Full-Auto",
-	["Semi-Auto"] = "Semi-Auto",
-	["3 Round Burst"] = "3-Burst"
-}
-
-local VanillaAutomatics = {
-	["weapon_smg1"] = true,
-	["weapon_ar2"] = true,
-	["weapon_mp5_hl1"] = true,
-	["weapon_gauss"] = true,
-	["weapon_egon"] = true
-}
-
 local ply = LocalPlayer()
 
 local Weapon = nil
@@ -607,6 +585,11 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
     surface.SetDrawColor(whitecolor)
     surface.DrawRect(0 + 74, disph - 65, 304 * scale * math.Remap(LocalPlayer():Health(), 0, 100, 0, 1), 10 * scale)
 
+    surface.SetMaterial(platemat)
+    surface.DrawTexturedRect(390 * scale, disph - 125 * scale, 70 * scale, 63 * scale)
+
     draw.DrawText(LocalPlayer():Nick(), "mwiinickblur", 0 + 71 * scale, disph - 115 * scale, blackcolor, TEXT_ALIGN_LEFT)
     draw.DrawText(LocalPlayer():Nick(), "mwiinicktext", 0 + 71 * scale, disph - 115 * scale, whitecolor, TEXT_ALIGN_LEFT)
+
+    GetCurrentWeaponFiremode()
 end)
