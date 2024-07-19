@@ -72,183 +72,7 @@ hook.Add("HUDShouldDraw", "hudhide", function(name)
 	if hide[name] then return false end
 end)
 
-surface.CreateFont("mwiitextnormal", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 50 * scale
-})
-
-surface.CreateFont("mwiitextsmoler", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 30 * scale
-})
-
-surface.CreateFont("mwiinicktext", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 24 * scale
-})
-
-surface.CreateFont("mwiinickblur", {
-    shadow = false,
-    blursize = 5 * scale,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 24 * scale
-})
-
-surface.CreateFont("mw2iitextnormal", {
-    shadow = false,
-    blursize = 5 * scale,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 50 * scale
-})
-
-surface.CreateFont("mw2iitextsmoler", {
-    shadow = false,
-    blursize = 5 * scale,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 30 * scale
-})
-
-surface.CreateFont("mwiithicksmalltext", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 500,
-    size = 30 * scale
-})
-
-surface.CreateFont("mwiireloadtext", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 30 * scale
-})
-
-surface.CreateFont("mwiinadetext", {
-    shadow = false,
-    blursize = 0,
-    underline = false,
-    rotary = false,
-    strikeout = false,
-    additive = false,
-    antialias = true,
-    extended = false,
-    scanlines = 0,
-    font = "Stratum2 BETA Medium",
-    italic = false,
-    outline = false,
-    symbol = false,
-    weight = 2,
-    size = 30 * scale
-})
-
-surface.CreateFont("hl2wepicon", {
-    font = 'halflife2',
-    size = 128 * 1.3,
-    outline = true
-})
-
-surface.CreateFont("hl2nadeicon", {
-    font = 'halflife2',
-    size = 64 * 1.3,
-    outline = true
-})
-
-hook.Add("OnScreenSizeChanged", "mwiireschange", function()
-    dispw = ScrW()
-    disph = ScrH()
+local function mwiimakefonts()
     surface.CreateFont("mwiitextnormal", {
         shadow = false,
         blursize = 0,
@@ -261,9 +85,9 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         scanlines = 0,
         font = "Stratum2 BETA Medium",
         italic = false,
-        outline = true,
+        outline = false,
         symbol = false,
-        weight = 2,
+        weight = 50,
         size = 50 * scale
     })
 
@@ -279,99 +103,9 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         scanlines = 0,
         font = "Stratum2 BETA Medium",
         italic = false,
-        outline = true,
-        symbol = false,
-        weight = 2,
-        size = 30 * scale
-    })
-
-    surface.CreateFont("mwiinadetext", {
-        shadow = false,
-        blursize = 0,
-        underline = false,
-        rotary = false,
-        strikeout = false,
-        additive = false,
-        antialias = true,
-        extended = false,
-        scanlines = 0,
-        font = "Stratum2 BETA Medium",
-        italic = false,
-        outline = true,
-        symbol = false,
-        weight = 2,
-        size = 28 * scale
-    })
-
-    surface.CreateFont("mwiireloadtext", {
-        shadow = false,
-        blursize = 0,
-        underline = false,
-        rotary = false,
-        strikeout = false,
-        additive = false,
-        antialias = true,
-        extended = false,
-        scanlines = 0,
-        font = "Stratum2 BETA Medium",
-        italic = false,
         outline = false,
         symbol = false,
-        weight = 2,
-        size = 30 * scale
-    })
-
-    surface.CreateFont("mwiithicksmalltext", {
-        shadow = false,
-        blursize = 0,
-        underline = false,
-        rotary = false,
-        strikeout = false,
-        additive = false,
-        antialias = true,
-        extended = false,
-        scanlines = 0,
-        font = "Stratum2 BETA Medium",
-        italic = false,
-        outline = true,
-        symbol = false,
-        weight = 500,
-        size = 30 * scale
-    })
-
-    surface.CreateFont("mw2iitextnormal", {
-        shadow = false,
-        blursize = 5 * scale,
-        underline = false,
-        rotary = false,
-        strikeout = false,
-        additive = false,
-        antialias = true,
-        extended = false,
-        scanlines = 0,
-        font = "Stratum2 BETA Medium",
-        italic = false,
-        outline = false,
-        symbol = false,
-        weight = 2,
-        size = 50 * scale
-    })
-
-    surface.CreateFont("mw2iitextsmoler", {
-        shadow = false,
-        blursize = 5 * scale,
-        underline = false,
-        rotary = false,
-        strikeout = false,
-        additive = false,
-        antialias = true,
-        extended = false,
-        scanlines = 0,
-        font = "Stratum2 BETA Medium",
-        italic = false,
-        outline = false,
-        symbol = false,
-        weight = 2,
+        weight = 50,
         size = 30 * scale
     })
 
@@ -389,13 +123,13 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         italic = false,
         outline = false,
         symbol = false,
-        weight = 2,
-        size = 24 * scale
+        weight = 50,
+        size = 20 * scale
     })
 
     surface.CreateFont("mwiinickblur", {
         shadow = false,
-        blursize = 5 * blur,
+        blursize = 5 * scale,
         underline = false,
         rotary = false,
         strikeout = false,
@@ -407,8 +141,98 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         italic = false,
         outline = false,
         symbol = false,
-        weight = 2,
-        size = 24 * scale
+        weight = 50,
+        size = 20 * scale
+    })
+
+    surface.CreateFont("mw2iitextnormal", {
+        shadow = false,
+        blursize = 5 * scale,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 50 * scale
+    })
+
+    surface.CreateFont("mw2iitextsmoler", {
+        shadow = false,
+        blursize = 5 * scale,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 30 * scale
+    })
+
+    surface.CreateFont("mwiithicksmalltext", {
+        shadow = false,
+        blursize = 0,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 500,
+        size = 30 * scale
+    })
+
+    surface.CreateFont("mwiireloadtext", {
+        shadow = false,
+        blursize = 0,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 30 * scale
+    })
+
+    surface.CreateFont("mwiinadetext", {
+        shadow = false,
+        blursize = 0,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 30 * scale
     })
 
     surface.CreateFont("hl2wepicon", {
@@ -422,6 +246,51 @@ hook.Add("OnScreenSizeChanged", "mwiireschange", function()
         size = 64 * 1.3,
         outline = true
     })
+
+    surface.CreateFont("mwiifiremode", {
+        shadow = false,
+        blursize = 0,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 26 * scale
+    })
+
+    surface.CreateFont("mwiifmodeblur", {
+        shadow = false,
+        blursize = 5 * scale,
+        underline = false,
+        rotary = false,
+        strikeout = false,
+        additive = false,
+        antialias = true,
+        extended = false,
+        scanlines = 0,
+        font = "Stratum2 BETA Medium",
+        italic = false,
+        outline = false,
+        symbol = false,
+        weight = 50,
+        size = 26 * scale
+    })
+end
+
+mwiimakefonts()
+
+hook.Add("OnScreenSizeChanged", "mwiireschange", function()
+    dispw = ScrW()
+    disph = ScrH()
+
+    mwiimakefonts()
 end)
 
 local function doNothing() end
@@ -492,13 +361,26 @@ function PKAD2_GetWeaponData()
     end
 end
 
+function GetUBWepActive() -- Won't work if in a file that's include()'d.
+    if Weapon.ARC9 then
+        if Weapon:GetUBGL() then ActivePrimaryFire = false end
+    elseif Weapon.ArcCW then
+        if Weapon:GetInUBGL() then ActivePrimaryFire = false end
+    end
+end
+
 hook.Add("PostDrawHUD", "mwiihuddraw", function()
     if gui.IsGameUIVisible() then return end
 
     if DoNotShow:GetBool() then return end
 
-    if (dispw / disph) < (16 / 10) then return end
+    if (dispw / disph) < (16 / 10) then
+        print("Please switch to a resolution with an aspect ratio of at least 16:10.")
+        return
+    end
     -- MWII does not support resolutions less wide than 16:10
+
+    ActivePrimaryFire = true
 
     PKAD2_GetWeaponData()
     if !LocalPlayer():Alive() then return end
@@ -507,69 +389,108 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
         local reservecolor = nil
 
         GetCurrentFiremode()
+        GetUBWepActive()
 
         if Weapon:GetPrimaryAmmoType() != -1 then
-            if BottomlessMag then
-                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, whitecolor, TEXT_ALIGN_RIGHT)
+            if ActivePrimaryFire then
+                if BottomlessMag then
+                    draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    --draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    draw.DrawText(WepReserve1 + math.Clamp(WepClip1, 0, 9999), "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, whitecolor, TEXT_ALIGN_RIGHT)
+                else
+                    if WepClip1 < (WepMag1 / 3) then
+                        clipcolor = redcolor
+                    else
+                        clipcolor = whitecolor
+                    end
+
+                    if WepReserve1 == 0 then
+                        reservecolor = redcolor
+                    else
+                        reservecolor = graycolor
+                    end
+
+                    draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    --draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    --draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                    draw.DrawText(WepClip1, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
+                    draw.DrawText(WepReserve1, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
+
+                    local reloadw, reloadh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "   RELOAD"))
+                    local reloadbutw, reloadbuth = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload")))
+
+                    if WepClip1 < (WepMag1 / 3) and WepClip1 != 0 and !WeaponJammed then
+                        if WepReserve1 > 0 then
+                            draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                            draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                            --draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                            draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
+                        else
+                            draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                            --draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                            draw.DrawText("LOW AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, yellowcolor, TEXT_ALIGN_CENTER)
+                        end
+                    elseif WepClip1 == 0 and !WeaponJammed then
+                        if WepReserve1 > 0 then
+                            draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                            draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                            --draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                            draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
+                        else
+                            draw.DrawText("NO AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                            draw.DrawText("NO AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, redcolor, TEXT_ALIGN_CENTER)
+                        end
+                    end
+
+                    if WeaponJammed then
+                        local jamw, jamh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "    UNJAM WEAPON"))
+                        draw.WordBox(2 * scale, dispw * 0.5 - (jamw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", redcolor, Color(0,0,0), TEXT_ALIGN_LEFT)
+                        draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        --draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        draw.DrawText("    UNJAM WEAPON", "mwiithicksmalltext", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, redcolor, TEXT_ALIGN_LEFT)
+                    end
+                end
+                draw.DrawText(FiremodeString, "mwiifmodeblur", dispw - 500 * scale, disph - 60 * scale, blackcolor, TEXT_ALIGN_LEFT)
+                draw.DrawText(FiremodeString, "mwiifiremode", dispw - 500 * scale, disph - 60 * scale, whitecolor, TEXT_ALIGN_LEFT)
             else
-                if WepClip1 < (WepMag1 / 3) then
-                    clipcolor = redcolor
-                else
-                    clipcolor = whitecolor
-                end
-
-                if WepReserve1 == 0 then
-                    reservecolor = redcolor
-                else
-                    reservecolor = graycolor
-                end
-
-                draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepClip1, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
-                draw.DrawText(WepReserve1, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepClip2, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                --draw.DrawText(WepClip1, "mw2iitextnormal", dispw - 210 * scale, disph - 145 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve2, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                --draw.DrawText(WepReserve1, "mw2iitextsmoler", dispw - 210 * scale, disph - 100 * scale, blackcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepClip2, "mwiitextnormal", dispw - 210 * scale, disph - 145 * scale, clipcolor, TEXT_ALIGN_RIGHT)
+                draw.DrawText(WepReserve2, "mwiitextsmoler", dispw - 210 * scale, disph - 100 * scale, reservecolor, TEXT_ALIGN_RIGHT)
 
                 local reloadw, reloadh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "   RELOAD"))
                 local reloadbutw, reloadbuth = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload")))
 
-                if WepClip1 < (WepMag1 / 3) and WepClip1 != 0 and !WeaponJammed then
-                    if WepReserve1 > 0 then
+                if WepClip2 < (WepMag2 / 3) and WepClip2 != 0 then
+                    if WepReserve2 > 0 then
                         draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        --draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
                     else
                         draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
-                        draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
+                        --draw.DrawText("LOW AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
                         draw.DrawText("LOW AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, yellowcolor, TEXT_ALIGN_CENTER)
                     end
-                elseif WepClip1 == 0 and !WeaponJammed then
+                elseif WepClip2 == 0 then
                     if WepReserve1 > 0 then
                         draw.WordBox(2 * scale, dispw * 0.5 - (reloadw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", whitecolor, Color(0,0,0), TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                        draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
+                        --draw.DrawText("   RELOAD", "mw2iitextsmoler", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
                         draw.DrawText("   RELOAD", "mwiithicksmalltext", dispw * 0.5 - (reloadw / 2) + reloadbutw, disph * 0.6, whitecolor, TEXT_ALIGN_LEFT)
                     else
                         draw.DrawText("NO AMMO", "mw2iitextsmoler", dispw * 0.5, disph * 0.58, blackcolor, TEXT_ALIGN_CENTER)
                         draw.DrawText("NO AMMO", "mwiithicksmalltext", dispw * 0.5, disph * 0.58, redcolor, TEXT_ALIGN_CENTER)
                     end
                 end
-
-                if WeaponJammed then
-                    local jamw, jamh = 4 * scale + surface.GetTextSize(string.upper(" " .. input.LookupBinding("+reload") .. " " .. "    UNJAM WEAPON"))
-                    draw.WordBox(2 * scale, dispw * 0.5 - (jamw / 2), disph * 0.6, string.upper(" " .. input.LookupBinding("+reload") .. " "), "mwiireloadtext", redcolor, Color(0,0,0), TEXT_ALIGN_LEFT)
-                    draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                    draw.DrawText("    UNJAM WEAPON", "mw2iitextsmoler", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, blackcolor, TEXT_ALIGN_LEFT)
-                    draw.DrawText("    UNJAM WEAPON", "mwiithicksmalltext", dispw * 0.5 - (jamw / 2) + reloadbutw, disph * 0.6, redcolor, TEXT_ALIGN_LEFT)
-                end
+                draw.DrawText(AltFiremodeString, "mwiifmodeblur", dispw - 500 * scale, disph - 60 * scale, blackcolor, TEXT_ALIGN_LEFT)
+                draw.DrawText(AltFiremodeString, "mwiifiremode", dispw - 500 * scale, disph - 60 * scale, whitecolor, TEXT_ALIGN_LEFT)
             end
         end
         mwhuddrawgunicon(Weapon, dispw - 590 * scale, disph - 190 * scale, 280 * scale, 140 * scale)
-        draw.DrawText(FiremodeString, "mwiitextsmoler", dispw - 500 * scale, disph - 60 * scale, whitecolor, TEXT_ALIGN_LEFT)
     end
 
     draw.DrawText(ply:GetAmmoCount(10), "mw2iitextsmoler", dispw - 70 * scale, disph - 90 * scale, blackcolor, TEXT_ALIGN_CENTER)
@@ -578,28 +499,31 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
     draw.SimpleText("k","hl2nadeicon",dispw - 70 * scale,disph - 125 * scale,headerTextColor,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 
     surface.SetDrawColor(53,53,53,148)
-    surface.DrawRect(0 + 71 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.DrawRect(0 + 71 * scale, disph - 85 * scale, 100 * scale, 16 * scale - 4 * scale)
     surface.SetDrawColor(74,125,253)
-    surface.DrawRect(0 + 74 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), 0, LocalPlayer():GetMaxArmor() / 3, 0, 1), 0, 1), 10 * scale)
+    surface.DrawRect(0 + 74 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), 0, LocalPlayer():GetMaxArmor() / 3, 0, 1), 0, 1), 6 * scale)
     surface.SetDrawColor(53,53,53,148)
-    surface.DrawRect(0 + 71 * scale + 105 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.DrawRect(0 + 71 * scale + 105 * scale, disph - 85 * scale, 100 * scale, 16 * scale - 4 * scale)
     surface.SetDrawColor(74,125,253)
-    surface.DrawRect(0 + 74 * scale + 105 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3, LocalPlayer():GetMaxArmor() / 3 * 2, 0, 1), 0, 1), 10 * scale)
+    surface.DrawRect(0 + 74 * scale + 105 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3, LocalPlayer():GetMaxArmor() / 3 * 2, 0, 1), 0, 1), 6 * scale)
     surface.SetDrawColor(53,53,53,148)
-    surface.DrawRect(0 + 71 * scale + 210 * scale, disph - 85 * scale, 100 * scale, 16 * scale)
+    surface.DrawRect(0 + 71 * scale + 210 * scale, disph - 85 * scale, 100 * scale, 16 * scale - 4 * scale)
     surface.SetDrawColor(74,125,253)
-    surface.DrawRect(0 + 74 * scale + 210 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3 * 2, LocalPlayer():GetMaxArmor(), 0, 1), 0, 1), 10 * scale)
+    surface.DrawRect(0 + 74 * scale + 210 * scale, disph - 82 * scale, 94 * scale * math.Clamp(math.Remap(LocalPlayer():Armor(), LocalPlayer():GetMaxArmor() / 3 * 2, LocalPlayer():GetMaxArmor(), 0, 1), 0, 1), 6 * scale)
     surface.SetDrawColor(whitecolor)
-    surface.DrawRect(0 + 74, disph - 65, 304 * scale * math.Remap(LocalPlayer():Health(), 0, 100, 0, 1), 10 * scale)
+    surface.DrawRect(0 + 74, disph - 65, 304 * scale * math.Remap(LocalPlayer():Health(), 0, 100, 0, 1), 6 * scale)
 
     surface.SetMaterial(platemat)
     surface.DrawTexturedRect(395 * scale, disph - 120 * scale, 60 * scale, 54 * scale)
 
     if GetConVar("sv_armorplates_maxheld") then
         if !LocalPlayer():GetArmorPlates() then
+            draw.DrawText("?", "mw2iitextsmoler", 455 * scale, disph - 105 * scale, blackcolor, TEXT_ALIGN_LEFT)
             draw.DrawText("?", "mwiitextsmoler", 455 * scale, disph - 105 * scale, whitecolor, TEXT_ALIGN_LEFT)
         else
+            draw.DrawText(LocalPlayer():GetArmorPlates(), "mw2iitextsmoler", 455 * scale, disph - 105 * scale, blackcolor, TEXT_ALIGN_LEFT)
             draw.DrawText(LocalPlayer():GetArmorPlates(), "mwiitextsmoler", 455 * scale, disph - 105 * scale, whitecolor, TEXT_ALIGN_LEFT)
+
         end
     end
 
