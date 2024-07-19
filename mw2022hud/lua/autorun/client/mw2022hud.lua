@@ -26,6 +26,8 @@ local CPPAltfireWeps = {
 
 local ply = LocalPlayer()
 
+local DoNotShow = CreateClientConVar("MWIIHUD_Disable", 0, true, false, "Fully disables the HUD.", 0, 1)
+
 local Weapon = nil
 local WeaponClass = ""
 local WepClip1 = -1
@@ -493,6 +495,8 @@ end
 hook.Add("PostDrawHUD", "mwiihuddraw", function()
     if gui.IsGameUIVisible() then return end
 
+    if DoNotShow:GetBool() then return end
+
     if (dispw / disph) < (16 / 10) then return end
     -- MWII does not support resolutions less wide than 16:10
 
@@ -502,7 +506,7 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
         local clipcolor = nil
         local reservecolor = nil
 
-        GetCurrentWeaponFiremode()
+        GetCurrentFiremode()
 
         if Weapon:GetPrimaryAmmoType() != -1 then
             if BottomlessMag then
@@ -589,7 +593,15 @@ hook.Add("PostDrawHUD", "mwiihuddraw", function()
     surface.DrawRect(0 + 74, disph - 65, 304 * scale * math.Remap(LocalPlayer():Health(), 0, 100, 0, 1), 10 * scale)
 
     surface.SetMaterial(platemat)
-    surface.DrawTexturedRect(390 * scale, disph - 125 * scale, 70 * scale, 63 * scale)
+    surface.DrawTexturedRect(395 * scale, disph - 120 * scale, 60 * scale, 54 * scale)
+
+    if GetConVar("sv_armorplates_maxheld") then
+        if !LocalPlayer():GetArmorPlates() then
+            draw.DrawText("?", "mwiitextsmoler", 455 * scale, disph - 105 * scale, whitecolor, TEXT_ALIGN_LEFT)
+        else
+            draw.DrawText(LocalPlayer():GetArmorPlates(), "mwiitextsmoler", 455 * scale, disph - 105 * scale, whitecolor, TEXT_ALIGN_LEFT)
+        end
+    end
 
     draw.DrawText(LocalPlayer():Nick(), "mwiinickblur", 0 + 71 * scale, disph - 115 * scale, blackcolor, TEXT_ALIGN_LEFT)
     draw.DrawText(LocalPlayer():Nick(), "mwiinicktext", 0 + 71 * scale, disph - 115 * scale, whitecolor, TEXT_ALIGN_LEFT)
